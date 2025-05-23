@@ -26,7 +26,7 @@ pipeline {
 
        stage('Run Application') {  
            steps { 
-              bat 'java -jar target\\Hello -0.0.1-SNAPSHOT.jar 10 5'
+              bat 'java -jar target\\Hello-0.0.1-SNAPSHOT.jar'
               }
          }
      } 
