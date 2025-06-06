@@ -1,18 +1,22 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+# Azure DevOps Pipeline for Maven Project
 
 trigger:
 - master
 
 pool:
-  name: 'Default'  # Use the correct agent pool name
+  name: 'Default'           # Replace with your agent pool name if not 'Default'
   demands:
     - agent.name -equals RAKESH
 
-
 steps:
+# Install JDK 11 on the agent (in case it's not set up already)
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '11'
+    jdkArchitecture: 'x64'
+    jdkSourceOption: 'PreInstalled'  # Use 'AzureStorage' if hosting your own ZIP
+
+# Build the project using Maven
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
