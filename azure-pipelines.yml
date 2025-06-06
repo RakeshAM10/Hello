@@ -23,3 +23,5 @@ steps:
 - script: |
     java -jar target/Hello2-0.0.1-SNAPSHOT.jar
   displayName: 'Run Compiled Java Application'
+
+  https://dev.azure.com/ra3013646/Project%201/_build/results?buildId=41&view=logs&j=12f1170f-54f2-53f3-20dd-22fc7dff55f9&t=9c939e41-62c2-5605-5e05-fc3554afc9f5
