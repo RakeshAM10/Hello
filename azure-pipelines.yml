@@ -7,24 +7,19 @@ pool:
     - agent.name -equals RAKESH
 
 steps:
-# Java is already installed locally, just reference it
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '17'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
-
-# Run Maven package
+# Run Maven build using locally installed JDK and Maven
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx1024m'
+    mavenOptions: '-Xmx3072m'
     javaHomeOption: 'UserInput'
     jdkUserInputPath: 'C:\\Program Files\\Java\\jdk-17'
     mavenDirectory: 'C:\\Users\\ra301\\Downloads\\apache-maven-3.9.9-bin (1)\\apache-maven-3.9.9'
-    goals: 'clean package'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
 
-# Run the jar file produced by Maven
+# Run the generated JAR file
 - script: |
     java -jar target/Hello2-0.0.1-SNAPSHOT.jar
-  displayName: 'Run Hello2 App'
+  displayName: 'Run Compiled Java Application'
