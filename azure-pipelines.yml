@@ -7,17 +7,14 @@ pool:
     - agent.name -equals RAKESH
 
 steps:
-# Set JAVA_HOME environment variable to your JDK 17 path
-- powershell: |
-    echo "##vso[task.setvariable variable=JAVA_HOME]C:\Program Files\Java\jdk-17"
-  displayName: 'Set JAVA_HOME to JDK 17'
-
-# Run Maven build using JDK 17
+# Run Maven build using locally installed JDK and Maven
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'Environment'
+    javaHomeOption: 'UserInput'
+    jdkUserInputPath: 'C:\Program Files\Java\jdk-17'
+    mavenDirectory: 'C:\Users\ra301\Downloads\apache-maven-3.9.9-bin (1)\apache-maven-3.9.9'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
