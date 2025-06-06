@@ -1,22 +1,20 @@
-# Azure DevOps Pipeline for Maven Project
-
 trigger:
 - master
 
 pool:
-  name: 'Default'           # Replace with your agent pool name if not 'Default'
+  name: 'Default'
   demands:
     - agent.name -equals RAKESH
 
 steps:
-# Install JDK 11 on the agent (in case it's not set up already)
+# Install JDK 11
 - task: JavaToolInstaller@0
   inputs:
     versionSpec: '11'
     jdkArchitecture: 'x64'
-    jdkSourceOption: 'PreInstalled'  # Use 'AzureStorage' if hosting your own ZIP
+    jdkSourceOption: 'PreInstalled'
 
-# Build the project using Maven
+# Run Maven build
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
