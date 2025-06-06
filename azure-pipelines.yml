@@ -7,14 +7,24 @@ pool:
     - agent.name -equals RAKESH
 
 steps:
-# Run Maven build using locally installed JDK and Maven
+# Use JDK 17
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '17'
+    jdkArchitecture: 'x64'
+    jdkSourceOption: 'PreInstalled'
+
+# Maven build
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
+    mavenOptions: '-Xmx1024m'
     javaHomeOption: 'UserInput'
-    jdkUserInputPath: 'C:\Program Files\Java\jdk-17'
-    mavenDirectory: 'C:\Users\ra301\Downloads\apache-maven-3.9.9-bin (1)\apache-maven-3.9.9'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    jdkUserInputPath: 'C:\\Program Files\\Java\\jdk-17'
+    mavenDirectory: 'C:\\Users\\ra301\\Downloads\\apache-maven-3.9.9-bin (1)\\apache-maven-3.9.9'
     goals: 'package'
+
+# Run compiled App.java (if it compiles to App.class in target/classes)
+- script: |
+    java -cp target/classes App
+  displayName: 'Run App.java'
