@@ -32,3 +32,6 @@ pipeline {
          }
      } 
 }
+Kind: Secret text
+Secret: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
+ID: github-token
