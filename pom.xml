@@ -43,3 +43,59 @@
   </build>
 
 </project>
+Step 3: Migrate to Gradle
+A. Delete Maven Build File
+Right-click pom.xml → Delete
+
+B. Create build.gradle File
+Right-click project → New → File → Name it: build.gradle
+
+Paste:
+
+groovy
+Copy
+Edit
+plugins {
+    id 'java'
+}
+
+group = 'com.example'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'com.example.App'
+        )
+    }
+}
+C. Create settings.gradle File (optional)
+Right-click project → New → File → Name it: settings.gradle
+
+groovy
+Copy
+Edit
+rootProject.name = 'hello-gradle'
+✅ Step 4: Convert Project to Gradle in Eclipse
+Right-click project → Configure → Convert to Gradle Project
+
+It will detect build.gradle and configure automatically.
+
+Build the project:
+
+Right-click project → Gradle → Refresh Gradle Project
+
+Or: Gradle Tasks view → Run build
+
+✅ Step 5: Run the Application
+Go to build/libs/hello-gradle-1.0.jar
+
+Right-click → Run As → Java Application
