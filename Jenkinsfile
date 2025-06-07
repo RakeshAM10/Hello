@@ -41,3 +41,9 @@ Maven integration plugin
 Gradle integration plugin 
 Github integration plugin
 
+For Freestyle project type:
+Under Build, add a build step Invoke top-level Maven targets
+
+Enter goals like clean install
+
+Configure SCM as above
