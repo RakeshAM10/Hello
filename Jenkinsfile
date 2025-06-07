@@ -35,3 +35,9 @@ pipeline {
 Kind: Secret text
 Secret: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
 ID: github-token
+
+Pipeline stage view plugin 
+Maven integration plugin 
+Gradle integration plugin 
+Github integration plugin
+
