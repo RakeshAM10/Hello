@@ -98,4 +98,15 @@ Or: Gradle Tasks view → Run build
 ✅ Step 5: Run the Application
 Go to build/libs/hello-gradle-1.0.jar
 
+
+
+exp 3,4 for build. gradel dependency:
+
 Right-click → Run As → Java Application
+Based on the image, the dependency to be typed is:
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "MavenToGradle.mtbg.App"
+    }
+}
+
